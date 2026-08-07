@@ -2,11 +2,14 @@ import { chromium } from "playwright";
 
 /**
  * Screenshot a single section, for reviewing one change without rendering the
- * whole page. Usage: node scripts/shoot-section.mjs <selector> <outDir> [theme]
+ * whole page.
+ * Usage: node scripts/shoot-section.mjs <selector> <outDir> [theme] [path]
  */
-const [selector, outDir, theme = "light"] = process.argv.slice(2);
+const [selector, outDir, theme = "light", path = "/"] = process.argv.slice(2);
 if (!selector || !outDir) {
-  console.error("usage: node scripts/shoot-section.mjs <selector> <outDir> [light|dark]");
+  console.error(
+    "usage: node scripts/shoot-section.mjs <selector> <outDir> [light|dark] [path]",
+  );
   process.exit(1);
 }
 
@@ -17,7 +20,7 @@ const ctx = await browser.newContext({
   colorScheme: theme === "dark" ? "dark" : "light",
 });
 const page = await ctx.newPage();
-await page.goto("http://localhost:3000", { waitUntil: "networkidle" });
+await page.goto(`http://localhost:3000${path}`, { waitUntil: "networkidle" });
 await page.evaluate(() =>
   document.querySelectorAll(".reveal").forEach((n) => n.setAttribute("data-visible", "true")),
 );

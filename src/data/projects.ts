@@ -42,9 +42,19 @@ export const projects: Project[] = [
         "Financial teams needed answers from a large, frequently-changing body of internal documents. A general-purpose LLM either refused, or worse, produced fluent and confidently wrong numbers. Fine-tuning was the obvious first instinct and the wrong one: the knowledge base changed faster than any retraining cycle could keep up with.",
       architecture: [
         {
-          stage: "Ingestion",
+          stage: "Upload & validation",
           detail:
-            "Documents uploaded through a Flask interface, parsed and split into overlapping chunks sized to preserve table and clause boundaries rather than cutting on a fixed character count.",
+            "Documents arrive through a Flask interface and are checked before anything else touches them — file type, size and readability. Rejecting a malformed document at the door is far cheaper than discovering it later as garbage chunks already sitting in the vector store.",
+        },
+        {
+          stage: "Data processing",
+          detail:
+            "Text extracted from the accepted files and normalised — repeated headers, footers and page furniture stripped out so they don't dilute the embeddings or resurface later as retrieved noise.",
+        },
+        {
+          stage: "Chunking",
+          detail:
+            "Documents split into overlapping chunks sized to preserve table and clause boundaries rather than cutting on a fixed character count, with the overlap keeping context intact across each split.",
         },
         {
           stage: "Embedding",
@@ -64,7 +74,12 @@ export const projects: Project[] = [
         {
           stage: "Generation",
           detail:
-            "GPT-4o answers strictly from the retrieved context via LangChain, with session-scoped chat history so follow-up questions resolve correctly.",
+            "GPT-4o answers strictly from the retrieved context via LangChain, declining rather than guessing when the retrieved passages don't actually cover the question.",
+        },
+        {
+          stage: "Session management",
+          detail:
+            "Chat history scoped to the user's session so follow-up questions resolve against earlier turns, and one user's documents and conversation never leak into another's.",
         },
       ],
       decisions: [
