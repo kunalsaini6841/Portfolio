@@ -53,6 +53,11 @@ for (const path of PAGES) {
     if (l.target === "_blank" && !/noopener/.test(l.rel)) {
       problems.push(`${path}: "${l.text}" opens a new tab without rel=noopener`);
     }
+    // A "back to top" that points at a mid-page section is the kind of bug
+    // that reads fine in code review and is obvious the moment you click it.
+    if (/back to top/i.test(l.text) && !["#main", "#top"].includes(l.href)) {
+      problems.push(`${path}: "Back to top" points at ${l.href}, not the top of the page`);
+    }
     if (/^https?:/.test(l.href)) {
       const res = await page.request.head(l.href).catch(() => null);
       const status = res?.status() ?? 0;

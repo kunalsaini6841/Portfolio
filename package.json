@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "check": "node scripts/links-check.mjs && node scripts/anchor-check.mjs && node scripts/footer-check.mjs",
     "visual-check": "node scripts/visual-check.mjs .visual"
   },
   "dependencies": {

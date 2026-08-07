@@ -16,10 +16,21 @@ npm run dev          # http://localhost:3000
 npm run build        # production build — all routes prerender static
 npm start            # serve the production build
 npm run lint         # ESLint
+npm run check        # links, anchors and footer behaviour (needs `npm start` running)
 npm run visual-check # screenshots + overflow/a11y audit (needs `npm start` running)
 ```
 
-`visual-check` requires Chromium once: `npx playwright install chromium`.
+Both browser checks need Chromium once: `npx playwright install chromium`.
+
+`npm run check` is the pre-deploy gate. It drives a real browser and asserts:
+
+- every in-page anchor resolves, and nav links land on the heading rather
+  than on empty space above it
+- external links carry `rel="noopener"` and don't 404 — including the live
+  GitHub repo links
+- "Back to top" actually returns to the top
+- contact CTAs open a composer instead of a `mailto:` that dies silently on
+  machines with no default mail client
 
 ## Where the content lives
 

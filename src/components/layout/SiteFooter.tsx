@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { profile } from "@/data/profile";
 import { Shell } from "@/components/ui/Section";
+import { gmailComposeUrl } from "@/lib/site";
 
 export function SiteFooter() {
   return (
@@ -34,19 +34,23 @@ export function SiteFooter() {
             </li>
             <li>
               <a
-                href={`mailto:${profile.email}`}
+                href={gmailComposeUrl(profile.email)}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="link-draw text-sm text-ink-muted transition-colors hover:text-ink"
               >
                 Email
               </a>
             </li>
             <li>
-              <Link
-                href="/#work"
+              {/* #main is the <main> wrapper in layout.tsx, so this resolves to
+                  the top of whichever page the footer is rendered on. */}
+              <a
+                href="#main"
                 className="link-draw text-sm text-ink-muted transition-colors hover:text-ink"
               >
                 Back to top
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
