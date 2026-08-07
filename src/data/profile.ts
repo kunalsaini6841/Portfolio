@@ -31,10 +31,16 @@ export const profile = {
     "I care about the unglamorous parts — retrieval quality, class imbalance, feature pipelines — because that's usually where the accuracy actually comes from.",
   ],
 
+  /**
+   * Forward-looking only. Anything listed here invites an interview question,
+   * so keep it to things worth two minutes of conversation. Skills already
+   * shipped belong in skills.ts, not here.
+   */
   exploring: [
-    "Agentic RAG with LangGraph",
-    "LLM fine-tuning (LoRA / QLoRA)",
-    "AWS Bedrock",
+    "RASA for conversational AI",
+    "CrewAI for multi-agent orchestration",
+    "RAG evaluation with RAGAS",
+    "Model serving with vLLM",
   ],
 } as const;
 
