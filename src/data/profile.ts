@@ -39,8 +39,8 @@ export const profile = {
   exploring: [
     "RASA for conversational AI",
     "CrewAI for multi-agent orchestration",
-    "RAG evaluation with RAGAS",
-    "Model serving with vLLM",
+    "Micro AI agents",
+    "Building AI agents without LLMs",
   ],
 } as const;
 
