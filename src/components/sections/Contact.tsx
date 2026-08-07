@@ -12,11 +12,13 @@ const channels = [
 export function Contact() {
   return (
     <section
-      id="contact"
       aria-labelledby="contact-heading"
-      className="scroll-mt-24 border-t border-rule bg-paper-sunk py-(--spacing-section)"
+      className="border-t border-rule bg-paper-sunk py-(--spacing-section)"
     >
       <Shell>
+        {/* See Section.tsx — anchor sits at the content, not above the padding. */}
+        <span id="contact" aria-hidden="true" className="block" />
+
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <Reveal>

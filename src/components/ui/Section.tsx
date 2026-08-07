@@ -40,11 +40,15 @@ export function Section({
 
   return (
     <section
-      id={id}
       aria-labelledby={headingId}
-      className={`scroll-mt-24 py-(--spacing-section) ${className}`}
+      className={`py-(--spacing-section) ${className}`}
     >
       <Shell>
+        {/* The anchor sits level with the title rule rather than on the
+            <section>, whose large top padding would otherwise land nav links
+            on a screenful of empty space above the heading. */}
+        <span id={id} aria-hidden="true" className="block" />
+
         <Reveal>
           <div className="flex flex-col gap-4 border-t border-rule pt-6 md:flex-row md:items-baseline md:justify-between md:gap-12">
             <div className="flex items-baseline gap-5">
