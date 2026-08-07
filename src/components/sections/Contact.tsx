@@ -1,7 +1,7 @@
 import { profile } from "@/data/profile";
 import { Shell } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
-import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
+import { gmailComposeUrl } from "@/lib/site";
 
 const channels = [
   { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
@@ -44,7 +44,9 @@ export function Contact() {
 
               <div className="mt-10 flex flex-wrap gap-3">
                 <a
-                  href={`mailto:${profile.email}`}
+                  href={gmailComposeUrl(profile.email)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-medium text-accent-ink transition-transform duration-300 hover:-translate-y-0.5"
                 >
                   Send an email
@@ -55,7 +57,6 @@ export function Contact() {
                     →
                   </span>
                 </a>
-                <CopyEmailButton />
                 <a
                   href={profile.resumePath}
                   target="_blank"
