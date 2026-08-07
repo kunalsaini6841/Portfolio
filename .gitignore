@@ -14,6 +14,10 @@
 /coverage
 /.visual
 
+# planning notes — kept locally, never published. The repo is public and
+# this file discusses positioning, evidence gaps and job-search status.
+/content
+
 # next.js
 /.next/
 /out/
