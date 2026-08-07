@@ -1,6 +1,7 @@
 import { profile } from "@/data/profile";
 import { Shell } from "@/components/ui/Section";
 import { Reveal } from "@/components/ui/Reveal";
+import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
 
 const channels = [
   { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
@@ -37,8 +38,8 @@ export function Contact() {
 
               <p className="mt-6 max-w-lg text-lede text-ink-muted">
                 I&apos;m looking for Data Scientist and GenAI engineering roles.
-                If you&apos;re hiring — or just want to talk about retrieval
-                quality — the inbox is open.
+                If you&apos;re hiring, or you have a problem you think I could
+                help solve, I&apos;d like to hear from you.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-3">
@@ -54,13 +55,14 @@ export function Contact() {
                     →
                   </span>
                 </a>
+                <CopyEmailButton />
                 <a
                   href={profile.resumePath}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center rounded-full border border-rule-strong px-5 py-3 text-sm font-medium text-ink transition-colors duration-300 hover:bg-paper"
                 >
-                  Download résumé
+                  Download Resume
                 </a>
               </div>
             </Reveal>

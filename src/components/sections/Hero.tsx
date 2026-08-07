@@ -70,7 +70,7 @@ export function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-rule-strong px-5 py-3 text-sm font-medium text-ink transition-colors duration-300 hover:bg-paper-sunk"
             >
-              Download résumé
+              Download Resume
             </a>
             <a
               href={profile.github}
